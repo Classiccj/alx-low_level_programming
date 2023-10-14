@@ -3,22 +3,23 @@
 #include <stdlib.h>
 
 /**
-* _calloc - allocated memory for nmeb element of size bytes
-  * @nmemb: number of element in the array
-  * @size: bytes for each position in array
-  * Return: pointer void
-    */
+ * array_range - function that creates an array of integers
+ * @min: the minimum value
+* @max: the maximum value
+ * Return: pointer to array
+   */
 
-void *_calloc(unsigned int nmemb, unsigned int size)
+int *array_range(int min, int max)
 {
-char *p;
-unsigned int i;
-if (nmemb == 0 || size == 0)
+int n;
+int range = max - min  + 1;
+int *pointer;
+if (min > max)
 return (NULL);
-p = malloc(nmemb * size);
-if (p == NULL)
+pointer = malloc(range * sizeof(int));
+if (pointer == NULL)
 return (NULL);
-for (i = 0; i < nmemb * size; i++)
-p[i] = 0;
-return (p);
+for (n = 0; range > 0; range--, n++, min++)
+pointer[n] = min;
+return (pointer);
 }
